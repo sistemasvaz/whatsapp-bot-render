@@ -4,9 +4,9 @@
   "description": "Bot WhatsApp com FAQ para clínica",
   "main": "bot-wpp.js",
   "scripts": {
-  "build": "npx puppeteer browsers install chrome@142.0.7444.61 --with-deps && npm install",
-  "start": "node bot-wpp.js"
-}
+    "build": "npx puppeteer browsers install chrome@142.0.7444.61 --with-deps && npm install",
+    "start": "node bot-wpp.js"
+  },
   "dependencies": {
     "@wppconnect-team/wppconnect": "^1.28.5"
   },
