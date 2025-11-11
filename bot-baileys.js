@@ -1,9 +1,10 @@
 const { 
   DisconnectReason, 
-  useMultiFileAuthState 
+  useMultiFileAuthState,
+  makeWASocket 
 } = require('@whiskeysockets/baileys');
 const pino = require('pino');
-const makeWASocket = require('@whiskeysockets/baileys').default;
+const http = require('http');
 
 // FAQ 20 PERGUNTAS
 const FAQ = {
@@ -43,20 +44,26 @@ async function startBot() {
   
   const sock = makeWASocket({
     auth: state,
-    printQRInTerminal: true,
     logger: pino({ level: 'silent' })
   });
 
   sock.ev.on('creds.update', saveCreds);
 
   sock.ev.on('connection.update', (update) => {
-    const { connection, lastDisconnect } = update;
+    const { connection, lastDisconnect, qr } = update;
+    
+    if (qr) {
+      console.log('\n=== ESCANEIE ESSE QR ===');
+      console.log(qr);
+      console.log('=== WhatsApp > Dispositivos Vinculados ===\n');
+    }
+
     if (connection === 'close') {
       const shouldReconnect = lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
-      console.log('Conexão fechada', lastDisconnect?.error, 'Reconectando...', shouldReconnect);
-      if (shouldReconnect) startBot();
+      console.log('Conexão fechada:', lastDisconnect?.error, 'Reconectando...', shouldReconnect);
+      if (shouldReconnect) setTimeout(startBot, 3000);
     } else if (connection === 'open') {
-      console.log('BOT BAILEYS CONECTADO! FAQ ATIVO.');
+      console.log('BOT BAILEYS CONECTADO! FAQ ATIVO 24/7');
     }
   });
 
@@ -76,7 +83,6 @@ async function startBot() {
       return;
     }
 
-    // FAQ
     for (const [pergunta, resposta] of Object.entries(FAQ)) {
       const pNorm = normalizar(pergunta);
       if (textoNorm.includes(pNorm)) {
@@ -85,7 +91,6 @@ async function startBot() {
       }
     }
 
-    // Fallback
     const fallback = [
       "Posso te ajudar! Me conte mais.",
       "Ligue para (11) 99999-9999 que te ajudam na hora!",
@@ -94,5 +99,14 @@ async function startBot() {
     await sock.sendMessage(from, { text: fallback[Math.floor(Math.random() * fallback.length)] });
   });
 }
+
+// Health check pra Render não cancelar
+const server = http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Bot ativo! FAQ rodando.');
+});
+server.listen(process.env.PORT || 10000, () => {
+  console.log('Health check na porta 10000');
+});
 
 startBot();
