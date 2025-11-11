@@ -42,18 +42,17 @@ wppconnect
     headless: true,
     useChrome: true,
     puppeteerOptions: {
-      executablePath: '/usr/bin/google-chrome-stable',
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--single-process',
-        '--disable-gpu'
-      ]
-    },
+  args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-accelerated-2d-canvas',
+    '--no-first-run',
+    '--no-zygote',
+    '--single-process',
+    '--disable-gpu'
+  ]
+},
     catchQR: (base64Qr, asciiQR) => {
       console.log('\n=== ESCANEIE ESSE QR NO WHATSAPP BUSINESS ===');
       console.log(asciiQR);
