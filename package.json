@@ -1,15 +1,13 @@
 {
   "name": "whatsapp-bot-render",
   "version": "1.0.0",
-  "description": "Bot WhatsApp com FAQ para clínica",
   "main": "bot-wpp.js",
   "scripts": {
     "build": "npx puppeteer browsers install chrome --with-deps && npm install",
     "start": "node bot-wpp.js"
   },
   "dependencies": {
-    "@wppconnect-team/wppconnect": "^1.28.5",
-    "puppeteer-core": "^22.0.0"
+    "@wppconnect-team/wppconnect": "^1.28.5"
   },
   "engines": {
     "node": "18.x"

@@ -42,21 +42,22 @@ wppconnect
     headless: true,
     useChrome: true,
     puppeteerOptions: {
-  args: [
-    '--no-sandbox',
-    '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',
-    '--disable-accelerated-2d-canvas',
-    '--no-first-run',
-    '--no-zygote',
-    '--single-process',
-    '--disable-gpu'
-  ]
-},
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/opt/render/.cache/puppeteer/chrome/linux-*/chrome-linux64/chrome',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu'
+      ]
+    },
     catchQR: (base64Qr, asciiQR) => {
-      console.log('\n=== ESCANEIE ESSE QR NO WHATSAPP BUSINESS ===');
+      console.log('\n=== ESCANEIE ESSE QR (INFINITO) ===');
       console.log(asciiQR);
-      console.log('=== Vá em Dispositivos Vinculados ===\n');
+      console.log('=== WhatsApp Business > Dispositivos Vinculados ===\n');
     },
   })
   .then((client) => startBot(client))
@@ -94,7 +95,7 @@ async function startBot(client) {
 
     if (respondido) return;
 
-    // Fallback (sem Ollama no Render)
+    // Fallback
     const respostas = [
       "Posso te ajudar com isso! Me conte mais sobre sua necessidade.",
       "Não tenho essa info agora, mas posso te passar o contato da clínica.",
