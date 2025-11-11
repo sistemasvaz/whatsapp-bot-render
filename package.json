@@ -1,0 +1,14 @@
+{
+  "name": "whatsapp-bot-render",
+  "version": "1.0.0",
+  "main": "bot-wpp.js",
+  "scripts": {
+    "start": "node bot-wpp.js"
+  },
+  "dependencies": {
+    "@wppconnect-team/wppconnect": "^1.28.5"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
