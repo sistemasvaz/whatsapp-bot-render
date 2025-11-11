@@ -1,8 +1,10 @@
-// puppeteer.config.cjs
-const { join } = require('path');
+// puppeteer.config.cjs – Config oficial do Render
+const {executablePath} = require('puppeteer');
+const {join} = require('path');
 
 module.exports = {
-  cacheDirectory: '/opt/render/.cache/puppeteer',
+  cacheDirectory: join(__dirname, '.puppeteer'),
+  executablePath: executablePath(),
   args: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
