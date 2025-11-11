@@ -1,15 +1,12 @@
 {
-  "name": "whatsapp-bot-render",
+  "name": "whatsapp-bot-baileys",
   "version": "1.0.0",
-  "main": "bot-wpp.js",
+  "main": "bot-baileys.js",
   "scripts": {
-    "build": "npx puppeteer browsers install chrome --with-deps && npm install",
-    "start": "node bot-wpp.js"
+    "start": "node bot-baileys.js"
   },
   "dependencies": {
-    "@wppconnect-team/wppconnect": "^1.28.5"
-  },
-  "engines": {
-    "node": "18.x"
+    "@whiskeysockets/baileys": "^6.7.7",
+    "pino": "^9.0.0"
   }
 }
