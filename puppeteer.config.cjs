@@ -1,4 +1,4 @@
-// puppeteer.config.cjs – Render-friendly
+// puppeteer.config.cjs
 const { join } = require('path');
 
 module.exports = {
