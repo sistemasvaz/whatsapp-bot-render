@@ -2,9 +2,10 @@
   "name": "whatsapp-bot-render",
   "version": "1.0.0",
   "main": "bot-wpp.js",
-  "scripts": {
-    "start": "node bot-wpp.js"
-  },
+ "scripts": {
+  "preinstall": "bash install-browser.sh",
+  "start": "node bot-wpp.js"
+}
   "dependencies": {
     "@wppconnect-team/wppconnect": "^1.28.5"
   },
